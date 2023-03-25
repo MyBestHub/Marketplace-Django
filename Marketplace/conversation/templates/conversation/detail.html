@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Conversation{% endblock %}
+
+{% block content %}
+<h1 class="mb-6 text-3xl">Conversation</h1>
+
+<div class="space-y-6">
+    {% for message in conversation.messages.all %} <!--from views.py and models.py--> 
+        <div class="p-6 flex {% if message.created_by == request.user %}bg-green-200{% else %}bg-gray-100{% endif %} rounded-xl"> <!--Different colors based on who send the messages.-->
+            <div>
+                <p class="mb-4"><strong>{{ message.created_by.username }}</strong> @ {{ message.created_at }}</p>
+                <p>{{ message.content }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<br>
+<form method="post" action="."> <!--Create a new form to be able to respond to the messages.-->
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-600 rounded-xl text-white">Respond</button>
+</form>
+{% endblock %}
+
