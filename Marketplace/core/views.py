@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from item.models import Category, Item
 from .forms import SignupForm
+from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+
+
 
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:6]
@@ -20,7 +26,9 @@ def signup(request):
         form= SignupForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save()
+
+            login(request, user)
             
             return redirect('/login/')
     else:
@@ -31,3 +39,8 @@ def signup(request):
     return render(request, 'core/signup.html', {
         'form': form
     })
+
+def myaccount(request):
+    return render(request, 'core/myaccount.html')
+
+        
