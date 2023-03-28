@@ -31,7 +31,8 @@
         <div class="grid grid-cols-3 gap-3">
             {% for category in categories %}
                 <div>
-                    <a href="{% url 'item:items' %}">
+                    <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">  <!--Recently added on the main page, so when I click on one of the categories, 
+                                                                                                        it direct me to the right pages, copied from item folder in items.html-->
                         <div>
                             <img src="{{ item.image.url }}" class="rounded-t-xl">
                         </div>
