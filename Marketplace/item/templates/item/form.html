@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}            
+{% extends 'core/base.html' %}
 
 {% block title %} {{ title }} {% endblock %}
 
@@ -15,7 +15,7 @@
     {% if form.errors or form.non_field_errors %}
     <div class="mb-3 p-6 bg-red-100 rounded-xl">
         {% for field in form %}
-            {{ field.errors }}
+        {{ field.errors }}
         {% endfor %}
 
         {{ form.non_field_errors }}
@@ -27,6 +27,5 @@
 </form>
 {% endblock %}
 
-
+<!--Use the same format for HTML, by example: mb-6, mb-3, text-3xl, p-6, etc -->
 <!--this form.html is for user to create a form, to add their items -->
-
